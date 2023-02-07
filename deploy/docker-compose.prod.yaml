@@ -19,7 +19,7 @@ services:
 
 
   api:
-    image: ${secrets.DOCKERHUB_USERNAME}/diplom:${TAG_NAME}
+    image: ${DOCKERHUB_USERNAME}/diplom:${TAG_NAME}
     restart: always
     env_file:
       - .env
