@@ -23,8 +23,6 @@ services:
     restart: always
     env_file:
       - .env
-    environment:
-      DB_HOST: db
     depends_on:
         db:
           condition: service_healthy
@@ -35,8 +33,6 @@ services:
     image: ${secrets.DOCKERHUB_USERNAME}/diplom:${TAG_NAME}
     env_file:
       - .env
-    environment:
-      DB_HOST: db
     depends_on:
       db:
         condition: service_healthy
