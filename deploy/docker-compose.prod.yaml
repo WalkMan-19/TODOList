@@ -30,7 +30,7 @@ services:
 
 
   collect_static:
-    image: ${secrets.DOCKERHUB_USERNAME}/diplom:${TAG_NAME}
+    image: ${DOCKERHUB_USERNAME}/diplom:${TAG_NAME}
     env_file:
       - .env
     depends_on:
