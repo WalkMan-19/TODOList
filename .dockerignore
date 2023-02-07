@@ -1,0 +1,10 @@
+# ignore all
+**
+
+
+# except
+!todolist
+!core
+!manage.py
+!requirements.txt
+!entrypoint.sh

@@ -12,13 +12,11 @@ pip install -r requirements.txt
 
 ### 3. Заполнить .env файл:
 ```xml
-DB_ENGINE=django.db.backends.postgresql
-DB_NAME=postgres
+DB_NAME=todolist
 DB_USER=postgres
 DB_PASSWORD=postgres
 DB_HOST=localost
-DB_PORT=5432
-SECRET_KEY='django-insecure-1tu5ogl_y)*9gxl26hly^ag=%**e1d(r+$%=h4bdtgqg=#06rm'
+SECRET_KEY=123qwe
 DEBUG=True
 ```
 
@@ -31,4 +29,8 @@ python ./manage.py migrate
 ### 5. Запустить сервер.
 ```sh
 python ./manage.py runserver
+```
+### 6. Запуск всех образов.
+```sh
+docker-compose up --build -d
 ```
