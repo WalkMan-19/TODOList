@@ -40,14 +40,14 @@ jobs:
         id: vars
         run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
 
-#      - name: Update docker compose
-#        env:
-#          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-#          TAG_NAME: ${{ steps.vars.outputs.tag }}
-#        run: |
-##          cat deploy/docker-compose.prod.yaml | envsubst > deploy/docker-compose.yaml
-#          envsubst '$DOCKERHUB_USERNAME, $TAG_NAME' < deploy/docker-compose.prod.yaml > deploy/docker-compose.yaml
-#          rm -f deploy/docker-compose.prod.yaml
+      - name: Update docker compose
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          TAG_NAME: ${{ steps.vars.outputs.tag }}
+        run: |
+#          cat deploy/docker-compose.prod.yaml | envsubst > deploy/docker-compose.yaml
+          envsubst '$DOCKERHUB_USERNAME, $TAG_NAME' < deploy/docker-compose.prod.yaml > deploy/docker-compose.yaml
+          rm -f deploy/docker-compose.prod.yaml
 
       - name: Decrypt .env
         uses: anthonykgross/ansible-vault-cli-github-action@v1
