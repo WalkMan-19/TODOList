@@ -42,7 +42,7 @@ class Goal(BaseModel):
     category = models.ForeignKey(to=GoalCategory, on_delete=models.RESTRICT, related_name='goals')
     status = models.PositiveSmallIntegerField(choices=Status.choices, default=Status.to_do)
     priority = models.PositiveSmallIntegerField(choices=Priority.choices, default=Priority.low)
-    due_data = models.DateField(null=True, blank=True)
+    due_date = models.DateField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='goals')
 
     class Meta:
