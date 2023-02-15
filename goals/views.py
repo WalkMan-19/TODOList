@@ -106,7 +106,7 @@ class CommentListView(generics.ListAPIView):
 
     def get_queryset(self):
         return GoalComment.objects.prefetch_related('goal').filter(
-            Q(user_id=self.request.user.id) & ~Q(status=Goal.Status.archived) & Q(category__is_deleted=False)
+            Q(user_id=self.request.user.id) & ~Q(goal__status=Goal.Status.archived) & Q(goal__category__is_deleted=False)
         )
 
 
@@ -117,5 +117,5 @@ class CommentView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return GoalComment.objects.prefetch_related('goal').filter(
-            Q(user_id=self.request.user.id) & ~Q(status=Goal.Status.archived) & Q(category__is_deleted=False)
+            Q(user_id=self.request.user.id) & ~Q(goal__status=Goal.Status.archived) & Q(goal__category__is_deleted=False)
         )
