@@ -3,9 +3,9 @@
 
 
 # except
-!todolist
-!core
+!todolist/**
+!core/**
 !manage.py
 !requirements.txt
 !entrypoint.sh
-!goals
+!goals/**
