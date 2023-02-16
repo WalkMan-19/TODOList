@@ -35,6 +35,7 @@ services:
     volumes:
       - ./todolist/:/app/todolist/
       - ./core/:/app/core/
+      - ./goals/:/app/goals/
 
 
   collect_static:
@@ -46,17 +47,21 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      api:
+        condition: service_started
     command: python manage.py collectstatic -c --no-input
     volumes:
       - django_static:/app/static
 
 
   frontend:
-    image: sermalenk/skypro-front:lesson-35
+    image: sermalenk/skypro-front:lesson-36
     restart: always
     ports:
       - "80:80"
     depends_on:
+      api:
+        condition: service_started
       collect_static:
         condition: service_completed_successfully
     volumes:
