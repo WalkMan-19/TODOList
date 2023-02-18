@@ -48,7 +48,7 @@ class GoalSerializer(serializers.ModelSerializer):
 
 
 class GoalCommentCreateSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault)
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = GoalComment
@@ -56,7 +56,7 @@ class GoalCommentCreateSerializer(serializers.ModelSerializer):
         read_only_fields = ['created', 'updated']
 
     def validate_goal(self, goal: Goal):
-        if goal.category.is_delted:
+        if goal.category.is_deleted:
             raise ValidationError('Cannot create a comment for a category in the archive')
         if self.context['request'].user != goal.user:
             raise exceptions.PermissionDenied
