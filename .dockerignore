@@ -9,3 +9,4 @@
 !requirements.txt
 !entrypoint.sh
 !goals/**
+!bot/**

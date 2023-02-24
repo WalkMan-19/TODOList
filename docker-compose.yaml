@@ -53,9 +53,24 @@ services:
     volumes:
       - django_static:/app/static
 
+  bot:
+    build: .
+    env_file:
+      - .env
+    restart: always
+    environment:
+      DB_HOST: db
+    depends_on:
+      api:
+        condition: service_started
+      db:
+        condition: service_healthy
+    command: python manage.py runbot
+
+
 
   frontend:
-    image: sermalenk/skypro-front:lesson-37
+    image: sermalenk/skypro-front:lesson-38
     restart: always
     ports:
       - "80:80"
