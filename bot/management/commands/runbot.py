@@ -29,11 +29,12 @@ class Command(BaseCommand):
             res = self.tg_client.get_updates(offset=offset)
             for item in res.result:
                 offset = item.update_id + 1
+
                 self.__tg_user, _ = TgUser.objects.get_or_create(
                     chat_id=item.message.chat.id,
                     defaults={"username": item.message.from_.username}
                 )
-                if self.__tg_user.user_id:
+                if self.tg_user.user_id:
                     self._handle_verified_user(item.message)
                 else:
                     self._handle_unverified_user(item.message)

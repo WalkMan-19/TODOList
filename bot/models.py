@@ -18,6 +18,11 @@ class TgUser(models.Model):
     def set_verification_code(self) -> str:
         self.verification_code = self._get_verification_code()
         self.save(update_fields=('verification_code',))
-
         return self.verification_code
 
+    class Meta:
+        verbose_name = 'Телеграм пользователь'
+        verbose_name_plural = 'Телеграм пользователи'
+
+    def __str__(self):
+        return self.username
