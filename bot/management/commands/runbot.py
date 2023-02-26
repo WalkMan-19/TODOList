@@ -34,7 +34,7 @@ class Command(BaseCommand):
                     chat_id=item.message.chat.id,
                     defaults={"username": item.message.from_.username}
                 )
-                if self.tg_user.user_id:
+                if self.__tg_user.user_id:
                     self._handle_verified_user(item.message)
                 else:
                     self._handle_unverified_user(item.message)
@@ -62,11 +62,14 @@ class Command(BaseCommand):
                 raise NotImplementedError
 
     def __handle_message(self, message: Message):
-        self.logger.info(f'User send: {message.text}')
+        self.tg_client.send_message(
+            chat_id=message.chat.id,
+            text='Введите команду'
+        )
 
     def _handle_goals_command(self, message: Message):
         goals: list[str] = list(
-            Goal.objects.filter(user_id=self.tg_user.user_id)
+            Goal.objects.filter(user_id=self.__tg_user.user.id)
             .exclude(status=Goal.Status.archived).values_list('title', flat=True)
         )
 
